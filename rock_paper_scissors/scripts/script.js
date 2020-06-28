@@ -6,29 +6,55 @@ function computerPlay() {
 function playRound(playerSelection, computerSelection) {
   playerSelection = playerSelection.toLowerCase();
   computerSelection = computerSelection.toLowerCase();
+  console.log(playerSelection + computerSelection);
   if (playerSelection === "paper") {
     if (computerSelection === "rock") {
-      alert("You win! Paper beats Rock");
+      return "win";
     } else if (computerSelection === "scissors") {
-      alert("You lose! Scissors beat Paper");
+      return "lose";
     } else {
-      alert("It's a tie!");
+      return "tie";
     }
   } else if (playerSelection === "rock"){
     if (computerSelection === "rock") {
-      alert("It's a tie!");
+      return "tie";
     } else if (computerSelection === "scissors") {
-      alert("You win! Rock beat Scisors");
+      return "win";
     } else {
-      alert("You lose! Paper beat Rock");
+      return "lose";
+    }
+  } else if (playerSelection === "scissors"){
+    if (computerSelection === "rock") {
+      return "lose";
+    } else if (computerSelection === "scissors") {
+      return "tie";
+    } else {
+      return "win";
     }
   } else {
-    if (computerSelection === "rock") {
-      alert("You lose! Rock beat scissors");
-    } else if (computerSelection === "scissors") {
-      alert("It's a tie!");
+    return "wrong input"
+  }
+}
+
+
+function game() {
+  let playerSelection, computerSelection, result, playerScore = 0, computerScore = 0;
+  for (var i = 0; i < 5; i++) {
+    playerSelection = prompt("What's your move?");
+    computerSelection = computerPlay();
+    result = playRound(playerSelection, computerSelection);
+    if (result === "win") {
+      console.log(`You won! ${playerSelection} beats ${computerSelection}`);
+      playerScore++;
+    } else if (result === "lose"){
+      console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
+      computerScore++;
+    } else if (result === "tie") {
+      console.log("It's a tie");
     } else {
-      alert("You win! Scissors beat Paper");
+      console.log("Wrong input");
     }
   }
+  console.log(`Player: ${playerScore}, Computer: ${computerScore}`);
+  playerScore > computerScore ? console.log("You won!") : console.log("You lost!");
 }
