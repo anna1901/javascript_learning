@@ -3,6 +3,17 @@ function computerPlay() {
   return options[Math.floor(Math.random() * 3)];
 }
 
+function playerPlay() {
+  let playerSelection;
+  while (playerSelection != "rock" && playerSelection != "scissors" && playerSelection != "paper") {
+    playerSelection = prompt("Rock, paper, scissors?");
+    if (playerSelection !== "" && playerSelection !== null) {
+      playerSelection = playerSelection.toLowerCase();
+    }
+  }
+  return playerSelection.toLowerCase();
+}
+
 function playRound(playerSelection, computerSelection) {
   playerSelection = playerSelection.toLowerCase();
   computerSelection = computerSelection.toLowerCase();
@@ -40,7 +51,7 @@ function playRound(playerSelection, computerSelection) {
 function game() {
   let playerSelection, computerSelection, result, playerScore = 0, computerScore = 0;
   for (var i = 0; i < 5; i++) {
-    playerSelection = prompt("What's your move?");
+    playerSelection = playerPlay();
     computerSelection = computerPlay();
     result = playRound(playerSelection, computerSelection);
     if (result === "win") {
